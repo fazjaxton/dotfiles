@@ -1,0 +1,158 @@
+" No vi compatibility
+set nocompatible
+
+" Set colors
+colorscheme torte
+
+" Allow switching buffers without saving
+set hidden
+
+" Use filetype plugins
+filetype plugin on
+
+" Use highlighting
+syntax on
+
+" Key mappings
+noremap <C-s> :set invhls<CR>
+noremap <C-c> ct_
+
+let mapleader=","
+
+" Case-insensitive if search is all lowercase
+set ignorecase
+set smartcase
+
+" Search while typing, highlight searches
+set incsearch
+set hls
+
+" Tab completion for files
+set wildmode=longest:full
+set wildmenu
+
+" Show commands in status line while typing
+set showcmd
+
+" In text-wrap mode make navigation keys move one visible (wrapped) line,
+" not jump over the complete line.  Use 'unset j/k' to undo this.
+noremap j gj
+noremap k gk
+
+" Make 'Ctrl-k' and friends change windows instead of 'Ctrl-w k'
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+" Type buffer number, then <leader>-g to jump to that buffer number
+noremap <leader>g <C-^>
+
+" Set pop-up menu colors
+highlight Pmenu guibg=green4 guifg=black
+highlight Pmenusel guibg=DarkGreen guifg=snow3
+
+" Fold options
+set foldlevel=10
+set foldmethod=syntax
+highlight Folded guibg=DodgerBlue4 guifg=gray
+
+" Custom highlighting
+" see ~/.vim/after/syntax
+
+" Set <leader>f to grep for the symbol under the cursor
+noremap <leader>f :Ag <cword> ..<CR><CR>:botright copen<CR>
+
+" Move through items/errors in quickfix window
+noremap <C-n> :cn<cr>
+noremap <C-p> :cp<cr>
+noremap <C-q> :cclose<cr>
+
+" Load plugins managed by pathogen (installed in bundle directory)
+call pathogen#infect()
+
+" FuzzyFinder bindings
+noremap <leader>o :FufCoverageFile<CR>
+noremap <leader>e :FufBuffer<CR>
+noremap <leader>t :FufTag<CR>
+
+" Set <leader>v to preview the tag under cursor
+noremap <leader>v :ptag <C-R><C-W><CR>
+noremap <leader>c :pclose<CR>
+
+" Set preview height for small tag preview window
+set previewheight=5
+
+" Function to jump from header to source and back
+function! HeaderSourceSwap()
+    let s:ext = expand("%:e")
+    let s:root = expand("%:r")
+    let s:newext = s:ext
+    if s:ext =~ "c"
+        if filereadable(s:root . ".h")
+            let s:newext = "h"
+        endif
+    elseif s:ext =~ "cpp"
+        if filereadable(s:root . ".hpp")
+            let s:newext = "hpp"
+        elseif filereadable(s:root . ".h")
+            let s:newext = "h"
+        endif
+    elseif s:ext =~ "h"
+        if filereadable(s:root . ".c")
+            let s:newext = "c"
+        elseif filereadable(s:root . ".cpp")
+            let s:newext = "cpp"
+        endif
+    elseif s:ext =~ "hpp"
+        if filereadable(s:root . ".cpp")
+            let s:newext = "cpp"
+        elseif filereadable(s:root . ".c")
+            let s:newext = "c"
+        endif
+    endif
+    exec "e " . s:root . "." . s:newext
+    unlet s:ext
+    unlet s:newext
+    unlet s:root
+endfunction
+
+noremap <leader>h :call HeaderSourceSwap()<CR>
+
+noremap <F6> :!ctags -R<CR><CR>
+
+set scrolloff=5
+
+""""""""""""""""""""""""
+" Use with :Usespaces <num> and we
+" are configured with indentation of <num>
+" using spaces.
+com! -nargs=1 Usespaces
+            \ set tabstop=<args> |
+            \ set expandtab |
+            \ set shiftwidth=<args> |
+            \ set softtabstop=<args> |
+            \ set nocopyindent
+
+""""""""""""""""""""""""
+" Use with :Usetabs <num> and we are
+" configured with indentation of <num> using
+" tabs.
+com! -nargs=1 Usetabs
+            \ set tabstop=<args> |
+            \ set noexpandtab |
+            \ set shiftwidth=<args> |
+            \ set softtabstop=<args> |
+            \ set copyindent
+
+""""""""""""""""""""""""
+" GNU indentation style is a mess
+com! -nargs=0 Gnuindent
+            \ set tabstop=8 |
+            \ set shiftwidth=2 |
+            \ set softtabstop=2 |
+            \ set noexpandtab |
+            \ set nocopyindent
+
+" Run a local configuration script if one exists
+ru local.vim

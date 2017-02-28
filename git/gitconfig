@@ -1,0 +1,22 @@
+[user]
+	name = Kevin Smith
+	email = thirdwiggin@gmail.com
+[alias]
+	st = status
+	ka = !gitk --all &
+	pl = !git log --pretty=oneline --decorate --graph --abbrev-commit -n$(( $(tput lines) / 2))
+	pla = !git log --pretty=oneline --decorate --graph --abbrev-commit -n$(( $(tput lines) / 2)) --all
+	plf = !git log --pretty=oneline --decorate --abbrev-commit -n$(( $(tput lines) / 2))
+	plaf = !git log --pretty=oneline --decorate --abbrev-commit -n$(( $(tput lines) / 2)) --all
+	dno = diff --name-only
+	ri = rebase -i
+	glu = ls-files --exclude-standard --others
+	rc = rebase --continue
+	suir = submodule update --init --recursive
+[color]
+	ui = auto
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.dotfiles/git/gitignore_global
+	editor = vim

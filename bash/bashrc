@@ -1,0 +1,20 @@
+bash_local=~/".dotfiles/bash/local"
+bash_aliases=~/".dotfiles/bash/aliases"
+
+# Set Vim editing mode
+set -o vi
+
+# Colored prompt, green username and host, blue working directory
+PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
+
+# Append history instead of overwriting
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+
+# Source configuration options specific to this machine (not tracked)
+if [ -f "${bash_local}" ]; then
+	source "${bash_local}"
+fi
+
+# Source aliases
+source "${bash_aliases}"
