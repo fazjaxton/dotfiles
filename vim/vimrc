@@ -34,6 +34,12 @@ set wildmenu
 " Show commands in status line while typing
 set showcmd
 
+" Use the mouse in non-gui vim
+set mouse=a
+
+" Show ruler (status bar thingie) at the bottom
+set ruler
+
 " In text-wrap mode make navigation keys move one visible (wrapped) line,
 " not jump over the complete line.  Use 'unset j/k' to undo this.
 noremap j gj
