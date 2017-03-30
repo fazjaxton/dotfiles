@@ -13,6 +13,7 @@
 	glu = ls-files --exclude-standard --others
 	rc = rebase --continue
 	suir = submodule update --init --recursive
+	stashdiff = "!if [ ${#} -eq 0 ]; then rev=\"stash@{0}\"; else rev=\"stash@{${1}}\"; fi; git diff ${rev}^! #"
 [color]
 	ui = auto
 [push]
