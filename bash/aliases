@@ -5,6 +5,15 @@ function show () {
     done
 }
 
+function mkcd () {
+    if [ $# -lt 1 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+        echo "Usage: mkcd DIR"
+        echo "Make a new directory and change into it"
+    else
+        mkdir -p ${1} && cd ${1}
+    fi
+}
+
 function kfind () {
     local dir="."
     local maxdepth="-maxdepth 4"
