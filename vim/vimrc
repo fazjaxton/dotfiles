@@ -36,6 +36,7 @@ set showcmd
 
 " Use the mouse in non-gui vim
 set mouse=a
+set ttymouse=xterm2
 
 " Show ruler (status bar thingie) at the bottom
 set ruler
