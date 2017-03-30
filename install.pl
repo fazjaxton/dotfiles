@@ -140,7 +140,7 @@ if ($all) {
 
 # Install links for each config
 for my $name (@install) {
-    my %link_map = %{%$configs{$name}};
+    my %link_map = %{$$configs{$name}};
     my @links = (keys %link_map);
     output "$name:\n";
     for my $link (@links) {
