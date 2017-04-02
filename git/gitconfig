@@ -14,6 +14,7 @@
 	rc = rebase --continue
 	suir = submodule update --init --recursive
 	stashdiff = "!if [ ${#} -eq 0 ]; then rev=\"stash@{0}\"; else rev=\"stash@{${1}}\"; fi; git diff ${rev}^! #"
+	localconfig = !git config --file=${HOME}/.dotfiles/git/gitconfig_local
 [color]
 	ui = auto
 [push]
@@ -21,3 +22,5 @@
 [core]
 	excludesfile = ~/.dotfiles/git/gitignore_global
 	editor = vim
+[include]
+	path = ~/.dotfiles/git/gitconfig_local
