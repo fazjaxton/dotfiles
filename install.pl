@@ -14,7 +14,6 @@ my $configs = {
     },
     "git" => {
         ".gitconfig" => "git/gitconfig",
-        ".gitignore_global" => "git/gitignore_global",
     },
     "tmux" => {
         ".tmux.conf" => "tmux/tmux.conf",
