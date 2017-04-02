@@ -25,6 +25,9 @@ my $configs = {
     },
 };
 
+# A link made into this config directory
+my $config_dir_link = ".dotfiles";
+
 # Command line options
 my $list = 0;
 my $all = 0;
@@ -141,6 +144,14 @@ if ($all) {
             exit 1;
         }
         push @install, $name;
+    }
+}
+
+# If this repo isn't checked out at ~/.dotfiles, make a link ~/.dotfiles into
+# this directory so config files can use this path if they need it.
+if ($reldir ne $config_dir_link) {
+    if (! -l File::Spec->catfile($homedir, $config_dir_link)) {
+        make_link($config_dir_link, "");
     }
 }
 
