@@ -32,6 +32,8 @@ my $dryrun = 0;
 my $quiet = 0;
 my $force = 0;
 
+# User's home directory
+my $homedir;
 # Path from home into config directory
 my $reldir;
 # Configs to install
@@ -49,13 +51,14 @@ sub output {
     }
 }
 
+sub init {
+    my $mypath = Cwd::realpath(File::Spec->catfile(getcwd(), $0));
+    my $mydir = ((File::Spec->splitpath($mypath))[1]);
+    $homedir = File::HomeDir->my_home();
+    $reldir = File::Spec->abs2rel($mydir, $homedir);
+}
+
 sub make_link {
-    my $homedir = File::HomeDir->my_home();
-    if (! defined $reldir) {
-        my $mypath = Cwd::realpath(File::Spec->catfile(getcwd(), $0));
-        my $mydir = ((File::Spec->splitpath($mypath))[1]);
-        $reldir = File::Spec->abs2rel($mydir, $homedir);
-    }
     my $link = File::Spec->catfile($homedir, $_[0]);
     my $target = File::Spec->catfile($reldir, $_[1]);
 
@@ -101,6 +104,9 @@ sub make_link {
         }
     }
 }
+
+
+init();
 
 # Parse options
 GetOptions(
