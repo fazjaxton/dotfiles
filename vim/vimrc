@@ -55,6 +55,10 @@ noremap <C-l> <C-w>l
 " Type buffer number, then <leader>-g to jump to that buffer number
 noremap <leader>g <C-^>
 
+" Change CTRL-] to show a list of tags if there are multiple matches instead
+" of using the first one.  (Still jumps immediately if only one match).
+noremap <C-]> g<C-]>
+
 " Set pop-up menu colors
 highlight Pmenu guibg=green4 guifg=black
 highlight Pmenusel guibg=DarkGreen guifg=snow3
