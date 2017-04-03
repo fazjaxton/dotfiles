@@ -83,6 +83,11 @@ noremap <leader>o :FufCoverageFile<CR>
 noremap <leader>e :FufBuffer<CR>
 noremap <leader>t :FufTag<CR>
 
+" "Zoom" in on the current file by making a full-window-sized tab for it
+noremap <leader>z :tab split<CR>
+" (Can also just C-w c to close tab)
+noremap <leader>Z :tabclose<CR>
+
 " Set <leader>v to preview the tag under cursor
 noremap <leader>v :ptag <C-R><C-W><CR>
 noremap <leader>c :pclose<CR>
