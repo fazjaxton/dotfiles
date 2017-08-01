@@ -38,8 +38,19 @@ set showcmd
 set mouse=a
 set ttymouse=xterm2
 
-" Show ruler (status bar thingie) at the bottom
+" Allow backspace to remove anything, including characters not inserted
+" in this session
+set backspace=indent,eol,start
+
+" Show status bar with ruler
+set laststatus=2
 set ruler
+
+" Don't delay for ESC-led key sequences, and use a long timeout for <leader>
+set timeout
+set timeoutlen=4000
+set ttimeout
+set ttimeoutlen=25
 
 " In text-wrap mode make navigation keys move one visible (wrapped) line,
 " not jump over the complete line.  Use 'unset j/k' to undo this.
@@ -51,6 +62,11 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+" Same while in insert mode
+inoremap <C-h> <C-o><C-w>h
+inoremap <C-j> <C-o><C-w>j
+inoremap <C-k> <C-o><C-w>k
+inoremap <C-l> <C-o><C-w>l
 
 " Type buffer number, then <leader>-g to jump to that buffer number
 noremap <leader>g <C-^>
@@ -58,10 +74,13 @@ noremap <leader>g <C-^>
 " Change CTRL-] to show a list of tags if there are multiple matches instead
 " of using the first one.  (Still jumps immediately if only one match).
 noremap <C-]> g<C-]>
+noremap <C-w><C-]> :stj <C-r><C-w><CR>
 
 " Set pop-up menu colors
-highlight Pmenu guibg=green4 guifg=black
-highlight Pmenusel guibg=DarkGreen guifg=snow3
+highlight Pmenu    guibg=green4         guifg=black
+highlight Pmenusel guibg=DarkGreen      guifg=snow3
+highlight Pmenu    ctermfg=LightGray    ctermbg=DarkBlue
+highlight Pmenusel ctermfg=White        ctermbg=DarkRed
 
 " Fold options
 set foldlevel=10

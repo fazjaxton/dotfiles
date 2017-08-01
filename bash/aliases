@@ -23,15 +23,15 @@ function kfind () {
         echo "kfind name [dir [maxdepth]] ..."
         return 1
     fi
-    if [ $# -gt 0 ]; then
+    if [ $# -gt 0 ] && [ "${1:0:1}" != "-" ]; then
         name="$1"
         shift
     fi
-    if [ $# -gt 0 ]; then
+    if [ $# -gt 0 ] && [ "${1:0:1}" != "-" ]; then
         dir="$1"
         shift
     fi
-    if [ $# -gt 0 ]; then
+    if [ $# -gt 0 ] && [ "${1:0:1}" != "-" ]; then
         if [ $1 -lt 0 ]; then
             maxdepth=""
         else
@@ -81,3 +81,5 @@ alias cgrep='egrep --color=auto -rni --include="*.[ch]" --include="*.cpp"'
 alias phex='printf "%x\n"'
 alias fuck='sudo "$BASH" -c "$(history -p !!)"'
 alias ktail='tail -f /var/log/kern.log'
+
+# vim: filetype=sh shiftwidth=4 tabstop=4 softtabstop=4 expandtab ai
