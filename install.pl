@@ -62,7 +62,15 @@ sub init {
 
 sub make_link {
     my $link = File::Spec->catfile($homedir, $_[0]);
-    my $target = File::Spec->catfile($reldir, $_[1]);
+
+    # Path out of link directory
+    my $is_dir = -d $_[0];
+    my $link_path = (File::Spec->splitpath($_[0], $is_dir))[1];
+    my $abs_link_path = File::Spec->catfile($homedir, $link_path);
+    my $path_out = File::Spec->abs2rel($homedir, $abs_link_path);
+
+    my $target_prefix = File::Spec->catfile($path_out, $reldir);
+    my $target = File::Spec->catfile($target_prefix, $_[1]);
 
     # Check if this file already exists and is a link
     my $exists = -e $link;
