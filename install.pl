@@ -22,6 +22,9 @@ my $configs = {
         ".vimrc" => "vim/vimrc",
         ".vim" => "vim",
     },
+    "gnome-css" => {
+        ".config/gtk-3.0/gtk.css" => "gtk3/gtk.css",
+    },
 };
 
 # A link made into this config directory

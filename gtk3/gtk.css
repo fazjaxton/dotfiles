@@ -1,0 +1,34 @@
+window.ssd headerbar.titlebar {
+	min-height: 0;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-right: 1px;
+	border: none;
+}
+
+window.ssd headerbar.titlebar button.titlebutton {
+	min-height: 0;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-right: 1px;
+}
+
+.default-decoration {
+	min-height: 0;
+	padding: 2px;
+}
+
+.default-decoration .titlebutton {
+	min-height: 20px;
+	min-width: 20px;
+}
+
+headerbar entry,
+headerbar spinbutton,
+headerbar button,
+headerbar separator {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
