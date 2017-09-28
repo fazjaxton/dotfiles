@@ -25,6 +25,9 @@ my $configs = {
     "gnome-css" => {
         ".config/gtk-3.0/gtk.css" => "gtk3/gtk.css",
     },
+    "nvim" => {
+        ".config/nvim" => "nvim",
+    },
 };
 
 # A link made into this config directory
