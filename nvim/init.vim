@@ -87,9 +87,6 @@ highlight Folded guibg=DodgerBlue4 guifg=gray
 " Custom highlighting
 " see ~/.vim/after/syntax
 
-" Set <leader>f to grep for the symbol under the cursor
-noremap <leader>f :Ag! <cword><CR><CR>:botright copen<CR>
-
 " Move through items/errors in quickfix window
 noremap <C-n> :cn<cr>
 noremap <C-p> :cp<cr>
@@ -100,6 +97,8 @@ let g:toggle_list_no_mappings=1
 " quickfix window is full width
 let g:toggle_list_copen_command="botright copen"
 
+let g:ycm_key_list_select_completion=['<Down>']
+
 call plug#begin()
 
 Plug 'rking/ag.vim'
@@ -108,21 +107,30 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'milkypostman/vim-togglelist'
+Plug 'Valloric/YouCompleteMe'
+Plug 'lyuts/vim-rtags'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
 " FZF bindings
-noremap <leader>o :Files<CR>
-noremap <leader>e :Buffers<CR>
-noremap <leader>t :Tags<CR>
+noremap <leader>fo :Files<CR>
+noremap <leader>fe :Buffers<CR>
+noremap <leader>ft :Tags<CR>
 
 " togglelist bindings
 noremap <leader>q :botright call ToggleQuickfixList()<CR>
+
+" Undotree bindings
+noremap <leader>u :UndotreeToggle<cr>
 
 " "Zoom" in on the current file by making a full-window-sized tab for it
 noremap <leader>z :tab split<CR>
 " (Can also just C-w c to close tab)
 noremap <leader>Z :tabclose<CR>
+
+" Delete the current buffer without closing window
+noremap <leader>bd :bp \| bd # <CR>
 
 " Set <leader>v to preview the tag under cursor
 noremap <leader>v :ptag <C-R><C-W><CR>
@@ -229,6 +237,9 @@ com! -nargs=0 Gnuindent
             \ set softtabstop=2 |
             \ set noexpandtab |
             \ set nocopyindent
+
+set background=dark
+colorscheme molokai
 
 " Run a local configuration script if one exists
 ru local.vim

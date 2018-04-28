@@ -59,6 +59,7 @@ function git_reset {
     elif [ "$1" == "--force-hard" ]; then
         # --force-hard actually uses the --hard option
         shift;
+        git diff | gzip -c > $(mktemp /tmp/git-reset-$(date +"%Y%m%d%H%M%S")-XXXXXX.gz)
         command git reset --hard "$@"
     else
         # All other commands are handled normally
