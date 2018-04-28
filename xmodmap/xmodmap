@@ -1,0 +1,15 @@
+! Turn caps lock into mode switch key
+clear lock
+keycode 66 = Mode_switch
+
+! Emulate Poker-style arrow keys
+keycode 31 = i I Up Up
+keycode 44 = j J Left Left
+keycode 45 = k K Down Down
+keycode 46 = l L Right Right
+
+keycode 43 = h H Home Home
+keycode 57 = n N End End
+keycode 30 = u U Prior Prior
+keycode 32 = o O Next Next
+keycode 22 = BackSpace BackSpace Delete Delete

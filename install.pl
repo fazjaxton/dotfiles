@@ -28,6 +28,9 @@ my $configs = {
     "nvim" => {
         ".config/nvim" => "nvim",
     },
+    "xmodmap" => {
+        ".Xmodmap" => "xmodmap/xmodmap",
+    },
 };
 
 # A link made into this config directory
