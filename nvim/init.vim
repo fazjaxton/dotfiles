@@ -49,6 +49,8 @@ set timeoutlen=4000
 set ttimeout
 set ttimeoutlen=25
 
+set undofile
+
 " In text-wrap mode make navigation keys move one visible (wrapped) line,
 " not jump over the complete line.  Use 'unset j/k' to undo this.
 noremap j gj
@@ -238,8 +240,23 @@ com! -nargs=0 Gnuindent
             \ set noexpandtab |
             \ set nocopyindent
 
+function! FixMolokai()
+    " Dumb links are what was originally causing the malokai problems - set reasonably
+    hi link diffAdded DiffAdd
+    hi link diffRemoved DiffDelete
+
+    " But the diff settings were kind of bad anyway
+    hi DiffAdd      ctermfg=81  ctermbg=none
+    hi DiffDelete   ctermfg=208 ctermbg=none
+    hi diffLine     ctermfg=135 ctermbg=none
+    hi diffSubName  ctermfg=118 ctermbg=none
+
+endfunction
+com! -nargs=0 FixMolokai call FixMolokai()
+
 set background=dark
 colorscheme molokai
+call FixMolokai()
 
 " Run a local configuration script if one exists
 ru local.vim
