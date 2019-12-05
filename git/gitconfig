@@ -16,6 +16,10 @@
 	stashdiff = "!if [ ${#} -eq 0 ]; then rev=\"stash@{0}\"; else rev=\"stash@{${1}}\"; fi; git diff ${rev}^! #"
 	localconfig = !git config --file=${HOME}/.dotfiles/git/gitconfig_local
 	recent-branch = branch --sort=-creatordate
+	fom = fetch origin master
+	pom = pull origin master
+	rom = rebase origin/master
+	lom = log origin/master..
 [color]
 	ui = auto
 [push]

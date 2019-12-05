@@ -15,7 +15,7 @@ filetype plugin on
 noremap <C-s> :set invhls<CR>
 noremap <C-c> ct_
 
-let mapleader=","
+let mapleader=" "
 
 " Case-insensitive if search is all lowercase
 set ignorecase
@@ -51,6 +51,13 @@ set ttimeoutlen=25
 
 set undofile
 
+" 4 spaces for tabs
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set nocopyindent
+
 " In text-wrap mode make navigation keys move one visible (wrapped) line,
 " not jump over the complete line.  Use 'unset j/k' to undo this.
 noremap j gj
@@ -66,9 +73,6 @@ inoremap <C-h> <C-o><C-w>h
 inoremap <C-j> <C-o><C-w>j
 inoremap <C-k> <C-o><C-w>k
 inoremap <C-l> <C-o><C-w>l
-
-" Type buffer number, then <leader>-g to jump to that buffer number
-noremap <leader>g <C-^>
 
 " Change CTRL-] to show a list of tags if there are multiple matches instead
 " of using the first one.  (Still jumps immediately if only one match).
@@ -94,13 +98,6 @@ noremap <C-n> :cn<cr>
 noremap <C-p> :cp<cr>
 noremap <C-q> :cclose<cr>
 
-" Don't automap toggle lists
-let g:toggle_list_no_mappings=1
-" quickfix window is full width
-let g:toggle_list_copen_command="botright copen"
-
-let g:ycm_key_list_select_completion=['<Down>']
-
 call plug#begin()
 
 Plug 'rking/ag.vim'
@@ -110,10 +107,19 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'milkypostman/vim-togglelist'
 Plug 'Valloric/YouCompleteMe'
-Plug 'lyuts/vim-rtags'
+"Plug 'lyuts/vim-rtags'
 Plug 'mbbill/undotree'
 
 call plug#end()
+
+" Don't automap toggle lists
+let g:toggle_list_no_mappings=1
+" quickfix window is full width
+let g:toggle_list_copen_command="botright copen"
+
+let g:ycm_key_list_select_completion=['<Down>']
+let g:ycm_server_python_interpreter='/usr/bin/python2'
+let g:ycm_global_ycm_extra_conf=expand('~/.ycm_extra_conf.py')
 
 " FZF bindings
 noremap <leader>fo :Files<CR>
@@ -137,6 +143,15 @@ noremap <leader>bd :bp \| bd # <CR>
 " Set <leader>v to preview the tag under cursor
 noremap <leader>v :ptag <C-R><C-W><CR>
 noremap <leader>c :pclose<CR>
+
+" Smart jump (combination of GoToDefinition/GoToDeclaration) to symbol under cursor
+noremap <leader>yg :YcmCompleter GoTo<CR>
+" List uses of identifier under cursor in quickfix window
+noremap <leader>yr :YcmCompleter GoToReferences<CR>
+" Jump to definition of /type/ of symbol under cursor
+noremap <leader>yt :YcmCompleter GoToType<CR>
+
+noremap <leader>pb :echon "break " expand("%:t") ":" line(".")<CR>
 
 " Ctrl-A/X inc/dec letters and numbers
 set nrformats=bin,hex,alpha
