@@ -1,5 +1,10 @@
+bash_default=~/".bashrc-default"
 bash_local=~/".dotfiles/bash/local"
 bash_aliases=~/".dotfiles/bash/aliases"
+
+if [ -f $bash_default ]; then
+    source $bash_default
+fi
 
 # Set Vim editing mode
 set -o vi

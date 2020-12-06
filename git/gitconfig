@@ -10,8 +10,10 @@
 	plaf = !git log --pretty=oneline --decorate --abbrev-commit -n$(( $(tput lines) / 2)) --all
 	dno = diff --name-only
 	ri = rebase -i
+	rimbom = "!git rebase -i $(git merge-base HEAD origin/master)"
 	glu = ls-files --exclude-standard --others
 	rc = rebase --continue
+	cpc = cherry-pick --continue
 	suir = submodule update --init --recursive
 	stashdiff = "!if [ ${#} -eq 0 ]; then rev=\"stash@{0}\"; else rev=\"stash@{${1}}\"; fi; git diff ${rev}^! #"
 	localconfig = !git config --file=${HOME}/.dotfiles/git/gitconfig_local
@@ -26,6 +28,6 @@
 	default = simple
 [core]
 	excludesfile = ~/.dotfiles/git/gitignore_global
-	editor = vim
+	editor = nvim
 [include]
 	path = ~/.dotfiles/git/gitconfig_local
